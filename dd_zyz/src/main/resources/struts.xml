@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="dd" extends="struts-default" namespace="/"></package>
+		<include file="com/baizhi/struts/struts-admin.xml"/>
+		<include file="com/baizhi/struts/struts-category.xml"/>
+		<include file="com/baizhi/struts/struts-book.xml"/>
+		<include file="com/baizhi/struts/struts-frontFirstView.xml"/>
+		<include file="com/baizhi/struts/struts-frontSecoundView.xml"/>
+		<include file="com/baizhi/struts/struts-CartAction.xml"/>
+		<include file="com/baizhi/struts/struts-user.xml"/>
+		<include file="com/baizhi/struts/struts-address.xml"/>
+		<include file="com/baizhi/struts/struts-order.xml"/>
+		<include file="com/baizhi/struts/struts-back_user.xml"/>
+		<include file="com/baizhi/struts/struts-backebook.xml"/>
+		<include file="com/baizhi/struts/struts-frontebook.xml"/>
+</struts>    

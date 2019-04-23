@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="book" extends="struts-default" namespace="/book">
+		<action name="queryAll" class="com.baizhi.action.BookAction" method="queryAll">
+			<result>/back/book/show.jsp</result>
+		</action>
+		
+		<action name="addOneBook" class="com.baizhi.action.BookAction" method="addOneBook">
+			<result type="redirectAction">queryAll</result>
+		</action>
+		
+		<action name="deleteOneBook" class="com.baizhi.action.BookAction" method="deleteOneBook">
+			<result type="redirectAction">queryAll</result>
+		</action>
+		
+		<action name="queryById" class="com.baizhi.action.BookAction" method="queryById">
+			<result>/back/book/update.jsp</result>
+		</action>
+		
+		<action name="updateOneBook" class="com.baizhi.action.BookAction" method="updateOneBook">
+			<result type="redirectAction">queryAll</result>
+		</action>
+		
+		<action name="queryByContent" class="com.baizhi.action.BookAction" method="queryByContent">
+			<result>/back/book/show.jsp</result>
+		</action>
+
+		<action name="findOne" class="com.baizhi.action.BookAction" method="findOne">
+			<result>/front/main/book_detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+
+
+
+
+
+

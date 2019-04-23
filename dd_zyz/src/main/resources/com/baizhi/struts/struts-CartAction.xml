@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="CartAction" extends="struts-default" namespace="/CartAction">
+		<action name="cart" class="com.baizhi.action.CartAction" method="cart">
+			<result type="redirect">/front/cart/cart_list.jsp</result>
+		</action>
+		
+		<action name="eCart" class="com.baizhi.action.CartAction" method="eCart">
+			<result type="redirect">/front/cart/cart_list.jsp</result>
+		</action>
+		
+		<action name="updateNum" class="com.baizhi.action.CartAction" method="updateNum">
+			<result type="redirect">/front/cart/cart_list.jsp</result>
+		</action>
+		
+		<action name="deleteFromCartById" class="com.baizhi.action.CartAction" method="deleteFromCartById">
+			<result type="redirect">/front/cart/cart_list.jsp</result>
+		</action>
+	</package>
+</struts>

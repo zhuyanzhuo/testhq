@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="FrontEbook" extends="dd" namespace="/FrontEbook">
+		<action name="saveMessage" class="com.baizhi.action.FrontEbookAction" method="saveMessage">
+			<result type="redirectAction">
+				<param name="namespace">/FrontFirstView</param>
+				<param name="actionName">frontFirstView</param>
+			</result>
+		</action>
+		
+		<action name="findChapter" class="com.baizhi.action.FrontEbookAction" method="findChapter">
+			<result>/front/main/show_ebook.jsp</result>
+		</action>
+		
+		<action name="updateChapter" class="com.baizhi.action.FrontEbookAction" method="updateChapter">
+			<result type="chain">
+				<param name="namespace">/FrontEbook</param>
+				<param name="actionName">findChapter</param>
+			</result>
+		</action>
+		
+		<action name="addLikeNum" class="com.baizhi.action.FrontEbookAction" method="addLikeNum"/>
+	</package>
+</struts>
+
+
+

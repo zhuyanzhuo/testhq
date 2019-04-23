@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ItemDao">
+	<select id="findAllByOrderId" parameterType="String" resultType="com.baizhi.entity.Item">
+		select id,book_id as bookId,count,create_time as createTime,order_id as orderId,typee
+		from dd_item where order_id = #{orderId}
+	</select>
+	
+	<insert id="addOneItem" parameterType="com.baizhi.entity.Item">
+		insert into dd_item values(#{id},#{bookId},#{count},#{createTime},#{orderId},#{typee})
+	</insert>
+	
+	<resultMap type="com.baizhi.entity.Item" id="ibo">
+		<id column="iid" property="id"/>
+		<result column="ibookId" property="bookId"/>
+		<result column="icount" property="count"/>
+		<result column="icreateTime" property="createTime"/>
+		<result column="iorderId" property="orderId"/>
+		<result column="itypee" property="typee"/>
+		<association property="book" javaType="com.baizhi.entity.Book">
+			<id column="bid" property="id"/>
+			<result column="bname" property="name"/>
+			<result column="bcover" property="cover"/>
+			<result column="bprice" property="price"/>
+			<result column="bddprice" property="ddprice"/>
+		</association>
+	</resultMap>
+	
+	<select id="findItemBookByOrderId" resultMap="ibo">
+		select 
+			i.id as iid,i.book_id as ibookId,i.count as icount,i.create_time as icreateTime,
+			i.order_id as iorderId,i.typee as itypee,b.id as bid,b.name as bname,b.cover as bcover,b.price as bprice,
+			b.ddprice as bddprice 
+		from dd_item i left join dd_book b on i.book_id = b.id
+		where i.order_id = #{orderId}
+	</select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="category" extends="struts-default" namespace="/category">
+		<action name="findAll" class="com.baizhi.action.CategoryAction" method="findAll">
+			<result>/back/category/show.jsp</result>
+		</action>
+		
+		<action name="addParent" class="com.baizhi.action.CategoryAction" method="addParent">
+			<result type="redirectAction">findAll</result>
+		</action>
+		
+		<action name="addSecound" class="com.baizhi.action.CategoryAction" method="addSecound">
+			<result type="redirectAction">findAll</result>
+		</action>
+		
+		<action name="findAllParent" class="com.baizhi.action.CategoryAction" method="findAllParent">
+			<result>/back/category/add-second.jsp</result>
+		</action>
+		
+		<action name="delete" class="com.baizhi.action.CategoryAction" method="delete">
+			<result type="redirectAction">findAll</result>
+		</action>
+		
+		<action name="findAllSecound" class="com.baizhi.action.CategoryAction" method="findAllSecound">
+			<result>/back/book/add.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+
+
+
+
+
+
+
+

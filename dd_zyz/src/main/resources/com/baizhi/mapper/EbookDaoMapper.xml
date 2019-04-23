@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.EbookDao">
+
+
+	<select id="findAll" resultType="com.baizhi.entity.Ebook">
+		select * from dd_ebook where book_id = #{bookId} and chapter = #{chapter} order by grade
+	</select>
+	
+	<insert id="save" parameterType="com.baizhi.entity.Ebook">
+		insert into dd_ebook values(#{id},#{name},#{grade},#{chapter},#{like_num},#{book_id})
+	</insert>
+	
+	<delete id="delete" parameterType="String">
+		delete from dd_ebook where book_id = #{bookId}
+	</delete>
+	
+	<select id="findOne" resultType="com.baizhi.entity.Ebook">
+		select * from dd_ebook where book_id = #{bookId} and chapter = #{chapter} and grade = #{grade}
+	</select>
+	
+	<delete id="deleteOne" parameterType="String">
+		delete from dd_ebook where id = #{id}
+	</delete>
+	
+	<select id="findMaxChapter" parameterType="String" resultType="Integer">
+		select c.* from
+		(select chapter from dd_ebook where book_id = #{id} order by chapter desc) c
+		where rownum=1
+	</select>
+	
+	<update id="addLikeNum" parameterType="String">
+		update dd_ebook set like_num = like_num + 1 where id = #{id}
+	</update>
+	
+	<select id="findByLikeNum" parameterType="String" resultType="com.baizhi.entity.Ebook">
+		select c.* from
+	    (select * from dd_ebook where book_id = #{book_id} order by like_num desc) c
+	    where rownum between 1 and 5
+	</select>
+</mapper>
+
+
+
+

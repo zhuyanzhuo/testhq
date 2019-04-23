@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.OrderDao">
+	<insert id="addOneOrder" parameterType="com.baizhi.entity.Order">
+		insert into dd_order values(#{id},#{orderNo},#{total},#{createTime},#{status},#{addressId},#{userId})
+	</insert>
+	
+	<resultMap type="com.baizhi.entity.Order" id="oa">
+		<id column="oid" property="id"/>
+		<result column="oorderNo" property="orderNo"/>
+		<result column="ototal" property="total"/>
+		<result column="ocreateTime" property="createTime"/>
+		<result column="ostatus" property="status"/>
+		<result column="oaddressId" property="addressId"/>
+		<result column="ouserId" property="userId"/>
+		<association property="address" javaType="com.baizhi.entity.Address">
+			<id column="aid" property="id"/>
+			<result column="aname" property="name"/>
+			<result column="alocal" property="local"/>
+			<result column="azipCodes" property="zipCodes"/>
+			<result column="aphone" property="phone"/>
+			<result column="auserId" property="userId"/>
+		</association>
+	</resultMap>
+	<select id="findAll" resultMap="oa">
+		select 
+			o.id as oid,o.order_no as oorderNo,o.total as ototal,o.create_time as ocreateTime,
+			o.status as ostatus,o.address_id as oaddressId,o.user_id as ouserId,
+			a.id as aid,a.name as aname,a.local as alocal,a.zip_codes as azipCodes,a.phone as aphone,
+			a.user_id as auserId
+		from dd_order o left join dd_address a on o.address_id = a.id
+	</select>
+	
+	<select id="findOneById" parameterType="String" resultType="com.baizhi.entity.Order">
+		select id,order_no as orderNo,total,create_time as createTime,status,address_id as addressId,
+		user_id as userId from dd_order where id = #{id}
+	</select>
+</mapper>
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="backUser" extends="struts-default" namespace="/backUser">
+		<action name="showAll" class="com.baizhi.action.BackUserAction" method="showAll">
+			<result>/back/user/show.jsp</result>
+		</action>
+		
+		<action name="updateStatus" class="com.baizhi.action.BackUserAction" method="updateStatus">
+			<result type="redirectAction">showAll</result>
+		</action>
+	</package>
+</struts>

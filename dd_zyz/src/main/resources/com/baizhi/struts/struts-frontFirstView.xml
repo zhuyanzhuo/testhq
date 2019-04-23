@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="FrontFirstView" extends="struts-default" namespace="/FrontFirstView">
+		<action name="frontFirstView" class="com.baizhi.action.FrontFirstViewAction" method="frontFirstView">
+			<result>/front/main/main.jsp</result>
+		</action>
+		
+		<action name="findOneById" class="com.baizhi.action.FrontFirstViewAction" method="findOneById">
+			<result>/front/main/book_detail.jsp</result>
+		</action>
+		
+		<action name="removeTotal" class="com.baizhi.action.FrontFirstViewAction" method="removeTotal">
+			<result type="redirectAction">frontFirstView</result>
+		</action>
+	</package>
+</struts>

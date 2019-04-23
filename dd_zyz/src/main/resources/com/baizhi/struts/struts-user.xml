@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="UserAction" extends="dd" namespace="/UserAction">
+		<action name="login" class="com.baizhi.action.UserAction" method="login">
+			<result type="redirectAction">
+				<param name="namespace">/FrontFirstView</param>
+				<param name="actionName">frontFirstView</param>
+			</result>
+			
+			<result name="error">/front/user/login_form.jsp</result>
+		</action>
+		
+		<action name="register" class="com.baizhi.action.UserAction" method="register">
+			<result type="redirectAction">sendEmail</result>
+			<result name="error">/front/user/register_form.jsp</result>
+		</action>
+		
+		<action name="sendEmail" class="com.baizhi.action.UserAction" method="sendEmail">
+			<result type="redirect">/front/user/verify_form.jsp</result>
+		</action>
+		
+		<action name="active" class="com.baizhi.action.UserAction" method="active">
+			<result type="redirect">/front/user/register_ok.jsp</result>
+			<result name="error">/front/user/verify_form.jsp</result>
+		</action>
+		
+		<action name="userCode" class="com.baizhi.action.UserAction" method="userCode">
+			<result>/front/user/register_form.jsp</result>
+		</action>
+		
+		<action name="exit" class="com.baizhi.action.UserAction" method="exit">
+			<result type="redirectAction">
+				<param name="namespace">/FrontFirstView</param>
+				<param name="actionName">frontFirstView</param>
+			</result>
+		</action>
+		
+		<action name="findAllBook" class="com.baizhi.action.UserAction" method="findAllBook">
+			<result>/front/main/ebook.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+
+
+
+
+
+
+
+

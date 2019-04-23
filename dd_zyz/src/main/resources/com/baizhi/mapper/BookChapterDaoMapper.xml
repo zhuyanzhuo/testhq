@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.BookChapterDao">
+	<insert id="save" parameterType="com.baizhi.entity.BookChapter">
+		insert into dd_book_chapter values(#{book_id},#{user_id},#{chapter})
+	</insert>
+	
+	<select id="findByBookAndUser" resultType="com.baizhi.entity.BookChapter">
+		select * from dd_book_chapter where user_id = #{userId} and book_id = #{bookId}
+	</select>
+	
+	<update id="updateChapter">
+		update dd_book_chapter set chapter = #{chapter}
+		where user_id = #{user_id} and book_id = #{book_id}
+	</update>
+</mapper>

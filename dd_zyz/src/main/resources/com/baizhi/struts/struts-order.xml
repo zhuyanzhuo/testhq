@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="order" extends="struts-default" namespace="/order">
+		<action name="addOneOrder" class="com.baizhi.action.OrderAction" method="addOneOrder">
+			<result type="redirect">/front/order/order_ok.jsp</result>
+			<result name="error">/front/order/address_form.jsp</result>
+		</action>
+		
+		<action name="findAll" class="com.baizhi.action.OrderAction" method="findAll">
+			<result>/back/order/show.jsp</result>
+		</action>
+		
+		<action name="findOneOrderById" class="com.baizhi.action.OrderAction" method="findOneOrderById">
+			<result>/back/order/detail.jsp</result>
+		</action>
+	</package>
+</struts>

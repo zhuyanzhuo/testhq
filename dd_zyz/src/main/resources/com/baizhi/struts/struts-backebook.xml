@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+
+	<package name="backebook" extends="dd" namespace="/backebook">
+		<action name="findAllBook" class="com.baizhi.action.BackEbookAction" method="findAllBook">
+			<result>/back/book/findbook.jsp</result>
+		</action>
+		
+		<action name="findOneBook" class="com.baizhi.action.BackEbookAction" method="findOneBook">
+			<result>/back/book/add-midebook.jsp</result>
+		</action>
+		
+		<action name="middleAdd" class="com.baizhi.action.BackEbookAction" method="middleAdd">
+			<result>/back/book/add-ebook.jsp</result>
+		</action>
+		
+		<action name="addEbook" class="com.baizhi.action.BackEbookAction" method="addEbook">
+			<result>/back/book/add-midebook.jsp</result>
+			
+			<result name="error" type="redirectAction">
+				<param name="namespace">/book</param>
+				<param name="actionName">queryAll</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

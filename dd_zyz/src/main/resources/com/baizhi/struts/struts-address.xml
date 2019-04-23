@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+
+	
+	
+	<package name="address" extends="struts-default" namespace="/address">
+		
+		<interceptors>
+			<interceptor name="youxiu" class="com.baizhi.Interceptor.UserInterceptor"/>
+			<interceptor-stack name="youxiu2">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="youxiu"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+			<result name="login" type="redirect">/front/user/login_form.jsp</result>
+			<result name="email" type="redirectAction">
+				<param name="namespace">/UserAction</param>
+				<param name="actionName">sendEmail</param>
+			</result>
+		</global-results>
+		
+		<action name="selectAll" class="com.baizhi.action.AddressAction" method="selectAll">
+			<interceptor-ref name="youxiu2"/>
+			<result>/front/order/address_form.jsp</result>
+		</action>
+		
+		<action name="selectAddressByAddressId" class="com.baizhi.action.AddressAction" method="selectAddressByAddressId">
+			<result>/front/order/address_form.jsp</result>
+		</action>
+		
+		
+	</package>
+</struts>

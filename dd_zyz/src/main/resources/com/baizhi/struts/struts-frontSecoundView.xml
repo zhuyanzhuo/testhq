@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="frontSecoundView" extends="struts-default" namespace="/frontSecoundView">
+		<action name="findFirstAndSecoundAndBook" class="com.baizhi.action.FrontSecoundViewAction" method="findFirstAndSecoundAndBook">
+			<result>/front/main/book_list.jsp</result>
+		</action>
+		
+		<action name="findBookBySecound" class="com.baizhi.action.FrontSecoundViewAction" method="findBookBySecound">
+			<result>/front/main/book_list.jsp</result>
+		</action>
+		
+		<action name="findOneBookById" class="com.baizhi.action.FrontSecoundViewAction" method="findOneBookById">
+			<result>/front/main/book_detail.jsp</result>
+		</action>
+	</package>
+</struts>
