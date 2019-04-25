@@ -11,8 +11,16 @@
 		
 		<action name="findChapter" class="com.baizhi.action.FrontEbookAction" method="findChapter">
 			<result>/front/main/show_ebook.jsp</result>
+			<result name="error">/front/main/chapter.jsp</result>
 		</action>
-		
+
+        <action name="saveChapter" class="com.baizhi.action.FrontEbookAction" method="saveChapter">
+            <result type="chain">
+                <param name="namespace">/FrontEbook</param>
+                <param name="actionName">findChapter</param>
+            </result>
+        </action>
+
 		<action name="updateChapter" class="com.baizhi.action.FrontEbookAction" method="updateChapter">
 			<result type="chain">
 				<param name="namespace">/FrontEbook</param>

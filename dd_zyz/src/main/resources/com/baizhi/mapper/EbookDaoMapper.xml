@@ -38,6 +38,10 @@
 	    (select * from dd_ebook where book_id = #{book_id} order by like_num desc) c
 	    where rownum between 1 and 5
 	</select>
+
+	<select id="findAllChapter" parameterType="String" resultType="Integer">
+		select chapter from dd_ebook where book_id = #{book_id} group by chapter
+	</select>
 </mapper>
 
 

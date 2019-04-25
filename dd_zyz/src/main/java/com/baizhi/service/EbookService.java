@@ -59,4 +59,11 @@ public interface EbookService {
 	 */
 	List<Ebook> findByLikeNum(String book_id);
 
+	/**
+	 * 通过图书id查找此图书的电子版一共有多少章节
+	 * @param book_id
+	 * @return
+	 */
+	List<Integer> findAllChapter(String  book_id);
+
 }

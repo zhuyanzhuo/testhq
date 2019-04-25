@@ -143,7 +143,20 @@ public class EbookServiceImpl implements EbookService {
 		MybatisUtils.close();
 		return list;
 	}
-	
-	
+
+	/**
+	 * 通过图书id查找此图书的电子版一共有多少章节
+	 * @param book_id
+	 * @return
+	 */
+	@Override
+	public List<Integer> findAllChapter(String book_id) {
+		SqlSession sqlSession = MybatisUtils.getSqlSession();
+		EbookDao mapper = sqlSession.getMapper(EbookDao.class);
+		List<Integer> list = mapper.findAllChapter(book_id);
+		MybatisUtils.close();
+		return list;
+	}
+
 
 }

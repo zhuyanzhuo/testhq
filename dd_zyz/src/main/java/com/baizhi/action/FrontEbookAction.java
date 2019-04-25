@@ -28,6 +28,9 @@ public class FrontEbookAction {
 	private String strChap;
 	private String maxStrChap;
 	private String mark;
+	private List<Integer> list;
+	private String chapter;
+
 	
 	/**
 	 * 为用户——图书表和书签表进行信息存储
@@ -47,7 +50,10 @@ public class FrontEbookAction {
 	}
 
 	/**
-	 * 查找某本图书某一章节下的所有段落，并按顺序展示出来
+	 * 当用户点击其所有的一部电子书之后，先进行书签表的查询，
+	 * 如果书签表中没有记录用户的书签信息，则进入目录页面，
+	 * 如果书签表有信息，则根据书签中记录的章节
+	 * 查找此章节下的所有段落，并按顺序展示出来
 	 * 同时将本书的最大章节数查询出来
 	 * @return
 	 */
@@ -57,37 +63,62 @@ public class FrontEbookAction {
 		BookServiceImpl bookImpl = new BookServiceImpl();
 		book = bookImpl.findOne(id);
 		BookChapter bookChapter = bcimpl.findByBookAndUser(id, user.getId());
-		Integer chap = bookChapter.getChapter();
-		strChap = chap.toString();
-		EbookServiceImpl ebookServiceImpl = new EbookServiceImpl();
-		List<Ebook> listGrade = ebookServiceImpl.findAll(id, chap);
-		map = new LinkedHashMap<String,List<String>>();
-		for(Ebook ebook:listGrade){
-			List<String> list = new ArrayList<String>();
-			String name = ebook.getName();
-			String eid = ebook.getId();
-			String cp = ebook.getChapter().toString();
-			String realPath = ServletActionContext.getRequest().getRealPath("back/ebook"+"/"+id+"/"+cp+"/");
-			try{
-				File file = new File(realPath,name);
-				FileInputStream fs = new FileInputStream(file);
-				BufferedReader br = new BufferedReader(new InputStreamReader(fs, "UTF-8"));
-				String str;
-				while((str = br.readLine()) != null){
-					list.add(str);
+		if(bookChapter != null){
+			Integer chap = bookChapter.getChapter();
+			strChap = chap.toString();
+			EbookServiceImpl ebookServiceImpl = new EbookServiceImpl();
+			List<Ebook> listGrade = ebookServiceImpl.findAll(id, chap);
+			map = new LinkedHashMap<String,List<String>>();
+			for(Ebook ebook:listGrade){
+				List<String> list = new ArrayList<String>();
+				String name = ebook.getName();
+				String eid = ebook.getId();
+				String cp = ebook.getChapter().toString();
+				String realPath = ServletActionContext.getRequest().getRealPath("back/ebook"+"/"+id+"/"+cp+"/");
+				try{
+					File file = new File(realPath,name);
+					FileInputStream fs = new FileInputStream(file);
+					BufferedReader br = new BufferedReader(new InputStreamReader(fs, "UTF-8"));
+					String str;
+					while((str = br.readLine()) != null){
+						list.add(str);
+					}
+					br.close();
+					fs.close();
+				}catch(Exception e){
+					e.printStackTrace();
 				}
-				br.close();
-				fs.close();
-			}catch(Exception e){
-				e.printStackTrace();
+				map.put(eid, list);
 			}
-			map.put(eid, list);
+			Integer maxChapter = ebookServiceImpl.findMaxChapter(id);
+			maxStrChap = maxChapter.toString();
+			return Action.SUCCESS;
+		}else{
+			EbookServiceImpl ebookServiceImpl = new EbookServiceImpl();
+			list = ebookServiceImpl.findAllChapter(id);
+			return Action.ERROR;
 		}
-		Integer maxChapter = ebookServiceImpl.findMaxChapter(id);
-		maxStrChap = maxChapter.toString();
+	}
+
+	/**
+	 * 当用户点击某一个章节时，为书签表创建一个记录第几个章节的书签
+	 * @return
+	 */
+	public String saveChapter(){
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		BookChapter bookChapter = new BookChapter();
+		bookChapter.setUser_id(user.getId());
+		bookChapter.setBook_id(id);
+		Integer value = Integer.valueOf(chapter);
+		bookChapter.setChapter(value);
+		BookChapterServiceImpl bookChapterService = new BookChapterServiceImpl();
+		bookChapterService.save(bookChapter);
+		BookServiceImpl bookService = new BookServiceImpl();
+		Book book = bookService.findOne(id);
+		id = book.getId();
 		return Action.SUCCESS;
 	}
-	
+
 	/**
 	 * 当用户点击上一页下一页时更改书签
 	 * @return
@@ -119,19 +150,29 @@ public class FrontEbookAction {
 		impl.addLikeNum(id);
 		return Action.NONE;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+	public String getChapter() {
+		return chapter;
+	}
+
+	public void setChapter(String chapter) {
+		this.chapter = chapter;
+	}
+
+	public List<Integer> getList() {
+		return list;
+	}
+
+	public void setList(List<Integer> list) {
+		this.list = list;
+	}
+
 	public String getMark() {
 		return mark;
 	}

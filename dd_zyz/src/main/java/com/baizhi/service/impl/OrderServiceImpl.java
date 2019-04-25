@@ -88,11 +88,6 @@ public class OrderServiceImpl implements OrderService {
 					item.setTypee("电子书");
 					itemDao.addOneItem(item);
 					userBookDao.save(entry.getKey().getId(),user.getId());
-					BookChapter bookChapter = new BookChapter();
-					bookChapter.setChapter(1);
-					bookChapter.setBook_id(entry.getKey().getId());
-					bookChapter.setUser_id(user.getId());
-					bookChapterDao.save(bookChapter);
 					bookDao.updateSale(entry.getKey().getId(),entry.getValue());
 				}
 			}
