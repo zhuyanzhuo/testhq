@@ -102,20 +102,39 @@ public class FrontEbookAction {
 
 	/**
 	 * 当用户点击某一个章节时，为书签表创建一个记录第几个章节的书签
+	 * 如果已经存在一个书签，那么修改它
 	 * @return
 	 */
 	public String saveChapter(){
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		BookChapterServiceImpl bookChapterService = new BookChapterServiceImpl();
 		BookChapter bookChapter = new BookChapter();
 		bookChapter.setUser_id(user.getId());
 		bookChapter.setBook_id(id);
 		Integer value = Integer.valueOf(chapter);
 		bookChapter.setChapter(value);
-		BookChapterServiceImpl bookChapterService = new BookChapterServiceImpl();
-		bookChapterService.save(bookChapter);
+		BookChapter byBookAndUser = bookChapterService.findByBookAndUser(id,user.getId());
+		if(byBookAndUser == null){
+			bookChapterService.save(bookChapter);
+		}else{
+			bookChapterService.updateChapter(bookChapter);
+		}
 		BookServiceImpl bookService = new BookServiceImpl();
 		Book book = bookService.findOne(id);
 		id = book.getId();
+		return Action.SUCCESS;
+	}
+
+	/**
+	 * 当用户从电子书内容跳转到目录时的方法
+	 * @return
+	 */
+	public String showChapter(){
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		BookServiceImpl bookImpl = new BookServiceImpl();
+		book = bookImpl.findOne(id);
+		EbookServiceImpl ebookServiceImpl = new EbookServiceImpl();
+		list = ebookServiceImpl.findAllChapter(id);
 		return Action.SUCCESS;
 	}
 

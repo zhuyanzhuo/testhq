@@ -21,6 +21,10 @@
             </result>
         </action>
 
+		<action name="showChapter" class="com.baizhi.action.FrontEbookAction" method="showChapter">
+			<result>/front/main/chapter.jsp</result>
+		</action>
+
 		<action name="updateChapter" class="com.baizhi.action.FrontEbookAction" method="updateChapter">
 			<result type="chain">
 				<param name="namespace">/FrontEbook</param>

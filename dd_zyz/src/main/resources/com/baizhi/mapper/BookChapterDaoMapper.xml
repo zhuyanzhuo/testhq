@@ -9,7 +9,7 @@
 		select * from dd_book_chapter where user_id = #{userId} and book_id = #{bookId}
 	</select>
 	
-	<update id="updateChapter">
+	<update id="updateChapter" parameterType="com.baizhi.entity.BookChapter">
 		update dd_book_chapter set chapter = #{chapter}
 		where user_id = #{user_id} and book_id = #{book_id}
 	</update>

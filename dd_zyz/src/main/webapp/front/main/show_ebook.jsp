@@ -64,6 +64,7 @@
 	<c:if test="${strChap ne maxStrChap }">
 		<input  class="button"  onclick="location.href='${pageContext.request.contextPath }/FrontEbook/updateChapter?id=${book.id }&strChap=${strChap }&mark=add'" value="下一章" />
 	</c:if>
+		<input class="button btn-p" type="button" value="返回目录" onclick="location.href='${pageContext.request.contextPath}/FrontEbook/showChapter?id=${book.id}'"/>
 		<input class="button btn-p" type="button" value="返回上级" onclick="history.go(-1);"/>
   </body>
 </html>
