@@ -62,29 +62,26 @@ public class FrontFirstViewAction extends ActionSupport{
 		book = impl.findOne(id);
 		map = new LinkedHashMap<String,List<String>>();
 		EbookServiceImpl ebookServiceImpl = new EbookServiceImpl();
-		List<Ebook> listEbook = ebookServiceImpl.findByLikeNum(id);
-		for(Ebook ebook : listEbook){
-			List<String> list = new ArrayList<String>();
-			String name = ebook.getName();
-			String eid = ebook.getId();
-			String cp = ebook.getChapter().toString();
-			String realPath = ServletActionContext.getRequest().getRealPath("back/ebook"+"/"+id+"/"+cp+"/");
-			try{
-				File file = new File(realPath,name);
-				FileInputStream fs = new FileInputStream(file);
-				BufferedReader br = new BufferedReader(new InputStreamReader(fs, "UTF-8"));
-				String str;
-				while((str = br.readLine()) != null){
-					list.add(str);
-				}
-				br.close();
-				fs.close();
-			}catch(Exception e){
-				e.printStackTrace();
+		Ebook byLikeNum = ebookServiceImpl.findByLikeNum(id);
+		List<String> list = new ArrayList<String>();
+		String name = byLikeNum.getName();
+		String eid = byLikeNum.getId();
+		String cp = byLikeNum.getChapter().toString();
+		String realPath = ServletActionContext.getRequest().getRealPath("back/ebook"+"/"+id+"/"+cp+"/");
+		try{
+			File file = new File(realPath,name);
+			FileInputStream fs = new FileInputStream(file);
+			BufferedReader br = new BufferedReader(new InputStreamReader(fs, "UTF-8"));
+			String str;
+			while((str = br.readLine()) != null){
+				list.add(str);
 			}
-			map.put(eid, list);
+			br.close();
+			fs.close();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		
+		map.put(eid, list);
 		return Action.SUCCESS;
 	}
 	

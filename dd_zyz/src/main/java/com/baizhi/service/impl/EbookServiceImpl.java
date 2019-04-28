@@ -132,16 +132,16 @@ public class EbookServiceImpl implements EbookService {
 
 	/**
 	 * 通过图书的id查找到当前图书的电子版被点赞次数最多的前5段进行降序展示
-	 * @param bookId
+	 * @param book_id
 	 * @return
 	 */
 	@Override
-	public List<Ebook> findByLikeNum(String book_id) {
+	public Ebook findByLikeNum(String book_id) {
 		SqlSession sqlSession = MybatisUtils.getSqlSession();
 		EbookDao mapper = sqlSession.getMapper(EbookDao.class);
-		List<Ebook> list = mapper.findByLikeNum(book_id);
+		Ebook ebook = mapper.findByLikeNum(book_id);
 		MybatisUtils.close();
-		return list;
+		return ebook;
 	}
 
 	/**

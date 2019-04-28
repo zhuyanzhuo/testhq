@@ -54,11 +54,11 @@ public interface EbookDao {
 	void addLikeNum(String id);
 	
 	/**
-	 * 通过图书的id查找到当前图书的电子版被点赞次数最多的前5段进行降序展示
+	 * 通过图书的id查找到当前图书的电子版被点赞次数最多的1段进行精彩内容的展示
 	 * @param id
 	 * @return
 	 */
-	List<Ebook> findByLikeNum(String book_id);
+	Ebook findByLikeNum(String book_id);
 
 	/**
 	 * 通过图书id查找此图书的电子版一共有多少章节

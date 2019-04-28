@@ -22,6 +22,9 @@
 			letter-spacing:3px;
 			font-size:15px;
 		}
+		.my_div{
+			width:300px; height:100px; background:#CC9933; display:none;
+		}
     </style>
     <script type="text/javascript" src="${pageContext.request.contextPath }/back/js/jquery-3.3.1.js"></script>
      <script src="${pageContext.request.contextPath}/boot/js/bootstrap.min.js"></script>
@@ -32,7 +35,7 @@
      		$.post("${pageContext.request.contextPath}/FrontEbook/addLikeNum",{id:id});
      		alert("点赞成功！");
      	}
-     	
+
      </script>
   </head>
   
@@ -46,13 +49,13 @@
         <div class="col-sm-3"  ></div>
         <div class="col-sm-6">
 			<c:forEach var="map" items="${map }">
-				<div id="${map.key }">
-					<p align="left"  onclick="del(this);">
-						<c:forEach var="list" items="${map.value }">
-							${list }
-						</c:forEach>
-					</p>
-				</div>
+					<div id="${map.key }">
+						<p align="left"  onclick="del(this);" title="觉得本段精彩？单击即可点赞">
+							<c:forEach var="list" items="${map.value }">
+								${list }
+							</c:forEach>
+						</p>
+					</div>
 			</c:forEach>
 		</div>
 		<div class="col-sm-3" ></div>

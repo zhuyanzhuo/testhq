@@ -36,7 +36,7 @@
 	<select id="findByLikeNum" parameterType="String" resultType="com.baizhi.entity.Ebook">
 		select c.* from
 	    (select * from dd_ebook where book_id = #{book_id} order by like_num desc) c
-	    where rownum between 1 and 5
+	    where rownum = 1
 	</select>
 
 	<select id="findAllChapter" parameterType="String" resultType="Integer">

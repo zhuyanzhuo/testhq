@@ -203,12 +203,12 @@
 							<div class="clear"></div>
 								<div class="list_r_list">
 									<span class="list_r_list_book">
-										<a name="link_prd_img" href='${pageContext.request.contextPath }/frontSecoundView/findOneBookById?id=${b.id}'>
+										<a name="link_prd_img" href='${pageContext.request.contextPath }/FrontFirstView/findOneById?id=${b.id}'>
 											<img class="aa" src="${pageContext.request.contextPath }${b.cover}" /> 
 										</a>
 									</span>
 									<h2>
-										<a name="link_prd_name" href='${pageContext.request.contextPath }/frontSecoundView/findOneBookById?id=${b.id}'>${b.name }</a>
+										<a name="link_prd_name" href='${pageContext.request.contextPath }/FrontFirstView/findOneById?id=${b.id}'>${b.name }</a>
 									</h2>
 						
 									<h4 class="list_r_list_h4">
