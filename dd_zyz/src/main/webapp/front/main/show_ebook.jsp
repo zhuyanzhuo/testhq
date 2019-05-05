@@ -36,6 +36,9 @@
      		alert("点赞成功！");
      	}
 
+     	function changesize(size) {
+            document.getElementById("").style.font = size + "px";
+        }
      </script>
   </head>
   
@@ -47,15 +50,16 @@
 
         <!--左边-->
         <div class="col-sm-3"  ></div>
+        <!--中间-->
         <div class="col-sm-6">
 			<c:forEach var="map" items="${map }">
-					<div id="${map.key }">
-						<p align="left"  onclick="del(this);" title="觉得本段精彩？单击即可点赞">
-							<c:forEach var="list" items="${map.value }">
-								${list }
-							</c:forEach>
-						</p>
-					</div>
+				<div id="${map.key }">
+					<p align="left"  onclick="del(this);" title="觉得本段精彩？单击即可点赞">
+						<c:forEach var="list" items="${map.value }">
+							${list }
+						</c:forEach>
+					</p>
+				</div>
 			</c:forEach>
 		</div>
 		<div class="col-sm-3" ></div>

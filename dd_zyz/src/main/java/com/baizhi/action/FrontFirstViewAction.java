@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.baizhi.util.FilePrintUtil;
 import org.apache.struts2.ServletActionContext;
 
 import com.baizhi.entity.Book;
@@ -68,19 +69,8 @@ public class FrontFirstViewAction extends ActionSupport{
 		String eid = byLikeNum.getId();
 		String cp = byLikeNum.getChapter().toString();
 		String realPath = ServletActionContext.getRequest().getRealPath("back/ebook"+"/"+id+"/"+cp+"/");
-		try{
-			File file = new File(realPath,name);
-			FileInputStream fs = new FileInputStream(file);
-			BufferedReader br = new BufferedReader(new InputStreamReader(fs, "UTF-8"));
-			String str;
-			while((str = br.readLine()) != null){
-				list.add(str);
-			}
-			br.close();
-			fs.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		FilePrintUtil util = new FilePrintUtil();
+		util.filePrintUtil(realPath,name,list);
 		map.put(eid, list);
 		return Action.SUCCESS;
 	}

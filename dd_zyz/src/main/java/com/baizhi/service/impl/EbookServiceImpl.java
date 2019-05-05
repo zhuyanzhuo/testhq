@@ -131,7 +131,7 @@ public class EbookServiceImpl implements EbookService {
 	}
 
 	/**
-	 * 通过图书的id查找到当前图书的电子版被点赞次数最多的前5段进行降序展示
+	 * 通过图书的id查找到当前图书的电子版被点赞次数最多的一段
 	 * @param book_id
 	 * @return
 	 */

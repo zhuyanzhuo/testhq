@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.baizhi.util.FilePrintUtil;
 import org.apache.struts2.ServletActionContext;
 
 import com.baizhi.entity.Book;
@@ -58,44 +59,49 @@ public class FrontEbookAction {
 	 * @return
 	 */
 	public String findChapter(){
+		//在session作用域中查找当前用户，并拿到当前用户对象
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		BookChapterServiceImpl bcimpl = new BookChapterServiceImpl();
 		BookServiceImpl bookImpl = new BookServiceImpl();
+		//根据前台传过来的id查找对应的图书对象
 		book = bookImpl.findOne(id);
+		//查找记录用户观看记录的书签
 		BookChapter bookChapter = bcimpl.findByBookAndUser(id, user.getId());
+		//判断书签是否存在，如果不存在，将会跳转至图书的目录部分
 		if(bookChapter != null){
+			//查找书签表中所记录的章节信息，得到章节信息，
+			//将得到的整型的章节信息转换为字符串类型
+			//为了方便将其传输给前端页面
 			Integer chap = bookChapter.getChapter();
 			strChap = chap.toString();
 			EbookServiceImpl ebookServiceImpl = new EbookServiceImpl();
+			//获取此图书某一章节下的所有段落
 			List<Ebook> listGrade = ebookServiceImpl.findAll(id, chap);
+			//使用LinkedHashMap的双向链表结构以保证章节下的段落顺序不会错乱
 			map = new LinkedHashMap<String,List<String>>();
 			for(Ebook ebook:listGrade){
 				List<String> list = new ArrayList<String>();
 				String name = ebook.getName();
 				String eid = ebook.getId();
 				String cp = ebook.getChapter().toString();
+				//通过相对路径获取绝对路径，以取得此章节下对应的所有段落
 				String realPath = ServletActionContext.getRequest().getRealPath("back/ebook"+"/"+id+"/"+cp+"/");
-				try{
-					File file = new File(realPath,name);
-					FileInputStream fs = new FileInputStream(file);
-					BufferedReader br = new BufferedReader(new InputStreamReader(fs, "UTF-8"));
-					String str;
-					while((str = br.readLine()) != null){
-						list.add(str);
-					}
-					br.close();
-					fs.close();
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				//对于选中的段落，逐行读取，将其中的每一行通过流的形式打印出来，并存入list中
+				//这个list集合的每一个元素代表此段落的一行内容。
+				//在map中通过每一段的id唯一地关联这一段的内容，将存好的list集合当做map的值存入map中
+				FilePrintUtil util = new FilePrintUtil();
+				util.filePrintUtil(realPath,name,list);
 				map.put(eid, list);
 			}
 			Integer maxChapter = ebookServiceImpl.findMaxChapter(id);
 			maxStrChap = maxChapter.toString();
+			//跳转至电子书显示页面
 			return Action.SUCCESS;
 		}else{
+			//图书下所有章节的展示
 			EbookServiceImpl ebookServiceImpl = new EbookServiceImpl();
 			list = ebookServiceImpl.findAllChapter(id);
+			//跳转至电子书的目录页面
 			return Action.ERROR;
 		}
 	}
