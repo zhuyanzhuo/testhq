@@ -2,58 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baizhi.dao.BookDao">
 	<select id="findAll" resultType="com.baizhi.entity.Book">
-		select id,name,author,cover,press,press_time as pressTime,edition,revision_time as revisionTime,
-		print_date as printDate,isbn,word_num as wordNum,page_num as pageNum,sizze,paper,pack,
+		select id,name,author,cover,press,edition,
+		print_date as printDate,isbn,word_num as wordNum,
 		price,ddprice,create_time as createTime,editor_recommend as editorRecommend,
-		content_abstract as contentAbstract,author_abstract as authorAbstract,director,
-		media_commentary as mediaCommentary,sale,stock,category_id as categoryId
+		content_abstract as contentAbstract,sale,stock,category_id as categoryId
 		from dd_book
 	</select>
 	
 	<select id="findOne" parameterType="String" resultType="com.baizhi.entity.Book">
-		select id,name,author,cover,press,press_time as pressTime,edition,revision_time as revisionTime,
-		print_date as printDate,isbn,word_num as wordNum,page_num as pageNum,sizze,paper,pack,
+		select id,name,author,cover,press,edition,
+		print_date as printDate,isbn,word_num as wordNum,
 		price,ddprice,create_time as createTime,editor_recommend as editorRecommend,
-		content_abstract as contentAbstract,author_abstract as authorAbstract,director,
-		media_commentary as mediaCommentary,sale,stock,category_id as categoryId
+		content_abstract as contentAbstract,sale,stock,category_id as categoryId
 		from dd_book where id = #{id}
 	</select>
 	
 	<select id="findByName" parameterType="String" resultType="com.baizhi.entity.Book">
-		select id,name,author,cover,press,press_time as pressTime,edition,revision_time as revisionTime,
-		print_date as printDate,isbn,word_num as wordNum,page_num as pageNum,sizze,paper,pack,
+		select id,name,author,cover,press,edition,
+		print_date as printDate,isbn,word_num as wordNum,
 		price,ddprice,create_time as createTime,editor_recommend as editorRecommend,
-		content_abstract as contentAbstract,author_abstract as authorAbstract,director,
-		media_commentary as mediaCommentary,sale,stock,category_id as categoryId 
+		content_abstract as contentAbstract,sale,stock,category_id as categoryId
 		from dd_book where name like '%'||#{name}||'%'
 	</select>
 	
 	<select id="findByAuthor" parameterType="String" resultType="com.baizhi.entity.Book">
-		select id,name,author,cover,press,press_time as pressTime,edition,revision_time as revisionTime,
-		print_date as printDate,isbn,word_num as wordNum,page_num as pageNum,sizze,paper,pack,
+		select id,name,author,cover,press,edition,
+		print_date as printDate,isbn,word_num as wordNum,
 		price,ddprice,create_time as createTime,editor_recommend as editorRecommend,
-		content_abstract as contentAbstract,author_abstract as authorAbstract,director,
-		media_commentary as mediaCommentary,sale,stock,category_id as categoryId 
+		content_abstract as contentAbstract,sale,stock,category_id as categoryId
 		from dd_book where author like '%'||#{author}||'%'
 	</select>
 	
 	<select id="findByPress" parameterType="String" resultType="com.baizhi.entity.Book">
-		select id,name,author,cover,press,press_time as pressTime,edition,revision_time as revisionTime,
-		print_date as printDate,isbn,word_num as wordNum,page_num as pageNum,sizze,paper,pack,
+		select id,name,author,cover,press,edition,
+		print_date as printDate,isbn,word_num as wordNum,
 		price,ddprice,create_time as createTime,editor_recommend as editorRecommend,
-		content_abstract as contentAbstract,author_abstract as authorAbstract,director,
-		media_commentary as mediaCommentary,sale,stock,category_id as categoryId 
+		content_abstract as contentAbstract,sale,stock,category_id as categoryId
 		from dd_book where press like '%'||#{press}||'%'
 	</select>
 	
 	<select id="selectBookBySale" resultType="com.baizhi.entity.Book">
-		select b.id as id,b.name as name,b.author as author,b.cover as cover,b.press as press,
-		b.press_time as pressTime,b.edition as edition,b.revision_time as revisionTime,
-		b.print_date as printDate,b.isbn as isbn,b.word_num as wordNum,b.page_num as pageNum,
-		b.sizze as sizze,b.paper as paper,b.pack as pack,b.price as price,b.ddprice as ddprice,
+		select b.id as id,b.name as name,b.author as author,
+		b.cover as cover,b.press as press,b.edition as edition,
+		b.print_date as printDate,b.isbn as isbn,
+		b.word_num as wordNum,b.price as price,b.ddprice as ddprice,
 		b.create_time as createTime,b.editor_recommend as editorRecommend,
-		b.content_abstract as contentAbstract,b.author_abstract as authorAbstract,
-		b.director as director,b.media_commentary as mediaCommentary,b.sale as sale,
+		b.content_abstract as contentAbstract,b.sale as sale,
 		b.stock as stock,b.category_id as categoryId,
 		rownum from
 		(select * from dd_book order by sale desc) b
@@ -61,13 +55,12 @@
 	</select>
 	
 	<select id="selectBookByCreateTime" resultType="com.baizhi.entity.Book">
-		select b.id as id,b.name as name,b.author as author,b.cover as cover,b.press as press,
-		b.press_time as pressTime,b.edition as edition,b.revision_time as revisionTime,
-		b.print_date as printDate,b.isbn as isbn,b.word_num as wordNum,b.page_num as pageNum,
-		b.sizze as sizze,b.paper as paper,b.pack as pack,b.price as price,b.ddprice as ddprice,
+		select b.id as id,b.name as name,b.author as author,
+		b.cover as cover,b.press as press,b.edition as edition,
+		b.print_date as printDate,b.isbn as isbn,
+		b.word_num as wordNum,b.price as price,b.ddprice as ddprice,
 		b.create_time as createTime,b.editor_recommend as editorRecommend,
-		b.content_abstract as contentAbstract,b.author_abstract as authorAbstract,
-		b.director as director,b.media_commentary as mediaCommentary,b.sale as sale,
+		b.content_abstract as contentAbstract,b.sale as sale,
 		b.stock as stock,b.category_id as categoryId,
 		rownum from
 		(select * from dd_book order by create_time desc) b
@@ -75,13 +68,12 @@
 	</select>
 	
 	<select id="selectBookByNewAndCreateTime" resultType="com.baizhi.entity.Book">
-		select b.id as id,b.name as name,b.author as author,b.cover as cover,b.press as press,
-		b.press_time as pressTime,b.edition as edition,b.revision_time as revisionTime,
-		b.print_date as printDate,b.isbn as isbn,b.word_num as wordNum,b.page_num as pageNum,
-		b.sizze as sizze,b.paper as paper,b.pack as pack,b.price as price,b.ddprice as ddprice,
+		select b.id as id,b.name as name,b.author as author,
+		b.cover as cover,b.press as press,b.edition as edition,
+		b.print_date as printDate,b.isbn as isbn,
+		b.word_num as wordNum,b.price as price,b.ddprice as ddprice,
 		b.create_time as createTime,b.editor_recommend as editorRecommend,
-		b.content_abstract as contentAbstract,b.author_abstract as authorAbstract,
-		b.director as director,b.media_commentary as mediaCommentary,b.sale as sale,
+		b.content_abstract as contentAbstract,b.sale as sale,
 		b.stock as stock,b.category_id as categoryId,
 		rownum from
 		(select * from dd_book order by create_time desc,sale desc) b
@@ -89,10 +81,10 @@
 	</select>
 	
 	<insert id="addOneBook" parameterType="com.baizhi.entity.Book">
-		insert into dd_book values(#{id},#{name},#{author},#{cover},#{press},#{pressTime},
-		#{edition},#{revisionTime},#{printDate},#{isbn},#{wordNum},#{pageNum},#{sizze},
-		#{paper},#{pack},#{price},#{ddprice},sysdate,#{editorRecommend},#{contentAbstract},
-		#{authorAbstract},#{director},#{mediaCommentary},#{sale},#{stock},#{categoryId})
+		insert into dd_book values(#{id},#{name},#{author},#{cover},#{press},
+		#{edition},#{printDate},#{isbn},#{wordNum},#{price},#{ddprice},sysdate,
+		#{editorRecommend},#{contentAbstract},
+		#{sale},#{stock},#{categoryId})
 	</insert>
 	
 	<delete id="deleteOneBook" parameterType="String">
@@ -101,12 +93,11 @@
 	
 	<update id="updateOneBook" parameterType="com.baizhi.entity.Book">
 		update dd_book set id = #{id},name = #{name},author = #{author},press = #{press},
-		press_time = #{pressTime},edition = #{edition},revision_time = #{revisionTime},
-		print_date = #{printDate},isbn = #{isbn},word_num = #{wordNum},page_num = #{pageNum},
-		sizze = #{sizze},paper = #{paper},pack = #{pack},price = #{price},ddprice = #{ddprice},
+		edition = #{edition},
+		print_date = #{printDate},isbn = #{isbn},word_num = #{wordNum},
+		price = #{price},ddprice = #{ddprice},
 		editor_recommend = #{editorRecommend},content_abstract = #{contentAbstract},
-		author_abstract = #{authorAbstract},director = #{director},
-		media_commentary = #{mediaCommentary},stock = #{stock},category_id = #{categoryId}
+		stock = #{stock},category_id = #{categoryId}
 		<if test="cover != null">,cover = #{cover}</if>
 		where id = #{id}
 	</update>

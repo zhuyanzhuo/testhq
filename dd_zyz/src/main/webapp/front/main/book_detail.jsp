@@ -36,24 +36,19 @@
 				<td colspan="2">出版社：${book.press }</td>
 			</tr>
 			<tr>
-				<td>出版时间：<fmt:formatDate value="${book.pressTime }" pattern="yyyy-MM-dd"/></td>
 				<td>字数：${book.wordNum }</td>
 			</tr>
 			<tr>
 				<td>版次：${book.edition }</td>
-				<td>页数：${book.pageNum }</td>
-			</tr>
-			<tr>
-				<td>印刷时间：<fmt:formatDate value="${book.revisionTime }" pattern="yyyy-MM-dd"/></td>
-				<td>开本：${book.sizze }</td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>印次：${book.printDate }</td>
-				<td>纸张：${book.paper }</td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>ISBN：${book.isbn }</td>
-				<td>包装：${book.pack }</td>
+				<td></td>
 			</tr>
 			<tr>
 				<td colspan="2">定价：￥${book.price }&nbsp;&nbsp;&nbsp;&nbsp;
@@ -78,15 +73,6 @@
 		<hr style="border:1px dotted #666"/>
 		<h2>内容简介</h2>
 		<p>&nbsp;&nbsp;${book.contentAbstract }</p>
-		<hr style="border:1px dotted #666"/>
-		<h2>作者简介</h2>
-		<p>&nbsp;&nbsp;${book.authorAbstract }</p>
-		<hr style="border:1px dotted #666"/>
-		<h2>目录</h2>
-		<p>&nbsp;&nbsp;${book.director }</p>
-		<hr style="border:1px dotted #666"/>
-		<h2>媒体评论</h2>
-		<p>&nbsp;&nbsp;${book.mediaCommentary }</p>
 		<hr style="border:1px dotted #666"/>
 		<h2>精彩内容</h2>
 		<div>

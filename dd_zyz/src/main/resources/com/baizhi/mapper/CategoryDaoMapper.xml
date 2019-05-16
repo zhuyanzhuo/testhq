@@ -31,24 +31,15 @@
 				<result column="author" property="author"/>
 				<result column="cover" property="cover"/>
 				<result column="press" property="press"/>
-				<result column="press_time" property="pressTime"/>
 				<result column="edition" property="edition"/>
-				<result column="revision_time" property="revisionTime"/>
 				<result column="print_date" property="printDate"/>
 				<result column="isbn" property="isbn"/>
 				<result column="word_num" property="wordNum"/>
-				<result column="page_num" property="pageNum"/>
-				<result column="sizze" property="sizze"/>
-				<result column="paper" property="paper"/>
-				<result column="pack" property="pack"/>
 				<result column="price" property="price"/>
 				<result column="ddprice" property="ddprice"/>
 				<result column="create_time" property="createTime"/>
 				<result column="editor_recommend" property="editorRecommend"/>
 				<result column="content_abstract" property="contentAbstract"/>
-				<result column="author_abstract" property="authorAbstract"/>
-				<result column="director" property="director"/>
-				<result column="media_commentary" property="mediaCommentary"/>
 				<result column="sale" property="sale"/>
 				<result column="stock" property="stock"/>
 				<result column="category_id" property="categoryId"/>
@@ -60,24 +51,15 @@
 				<result column="author" property="author"/>
 				<result column="cover" property="cover"/>
 				<result column="press" property="press"/>
-				<result column="press_time" property="pressTime"/>
 				<result column="edition" property="edition"/>
-				<result column="revision_time" property="revisionTime"/>
 				<result column="print_date" property="printDate"/>
 				<result column="isbn" property="isbn"/>
 				<result column="word_num" property="wordNum"/>
-				<result column="page_num" property="pageNum"/>
-				<result column="sizze" property="sizze"/>
-				<result column="paper" property="paper"/>
-				<result column="pack" property="pack"/>
 				<result column="price" property="price"/>
 				<result column="ddprice" property="ddprice"/>
 				<result column="create_time" property="createTime"/>
 				<result column="editor_recommend" property="editorRecommend"/>
 				<result column="content_abstract" property="contentAbstract"/>
-				<result column="author_abstract" property="authorAbstract"/>
-				<result column="director" property="director"/>
-				<result column="media_commentary" property="mediaCommentary"/>
 				<result column="sale" property="sale"/>
 				<result column="stock" property="stock"/>
 				<result column="category_id" property="categoryId"/>
@@ -95,24 +77,15 @@
 			<result column="author" property="author"/>
 			<result column="cover" property="cover"/>
 			<result column="press" property="press"/>
-			<result column="press_time" property="pressTime"/>
 			<result column="edition" property="edition"/>
-			<result column="revision_time" property="revisionTime"/>
 			<result column="print_date" property="printDate"/>
 			<result column="isbn" property="isbn"/>
 			<result column="word_num" property="wordNum"/>
-			<result column="page_num" property="pageNum"/>
-			<result column="sizze" property="sizze"/>
-			<result column="paper" property="paper"/>
-			<result column="pack" property="pack"/>
 			<result column="price" property="price"/>
 			<result column="ddprice" property="ddprice"/>
 			<result column="create_time" property="createTime"/>
 			<result column="editor_recommend" property="editorRecommend"/>
 			<result column="content_abstract" property="contentAbstract"/>
-			<result column="author_abstract" property="authorAbstract"/>
-			<result column="director" property="director"/>
-			<result column="media_commentary" property="mediaCommentary"/>
 			<result column="sale" property="sale"/>
 			<result column="stock" property="stock"/>
 			<result column="category_id" property="categoryId"/>
@@ -153,9 +126,9 @@
 	<select id="findFirstAndSecoundAndBook" resultMap="cgCollection">
 				select  f.id as fid,f.name as fname,f.levels as flevels,f.parent_id as fparentId,
 						s.id as sid,s.name as sname,s.levels as slevels,s.parent_id as sparentId,
-						b.id as bid,name,author,cover,press,press_time,edition,revision_time,print_date,
-						isbn,word_num,page_num,sizze,paper,pack,price,ddprice,create_time,
-						editor_recommend,content_abstract,author_abstract,director,media_commentary,
+						b.id as bid,name,author,cover,press,edition,print_date,
+						isbn,word_num,price,ddprice,create_time,
+						editor_recommend,content_abstract,
 						sale,stock,category_id
 				from dd_category f left join dd_category s
 				on f.name = s.parent_id 
@@ -166,10 +139,9 @@
 	
 	<select id="findBookBySecound" resultMap="secound">
 		select s.id as sid,s.name as sname,s.levels as slevels,s.parent_id as sparent_id,
-				b.id as bid,b.name,b.author,b.cover,b.press,b.press_time,b.edition,
-				b.revision_time,b.print_date,b.isbn,b.word_num,b.page_num,b.sizze,b.paper,
-				b.pack,b.price,b.ddprice,b.create_time,b.editor_recommend,
-				b.content_abstract,b.author_abstract,b.director,b.media_commentary,
+				b.id as bid,b.name,b.author,b.cover,b.press,b.edition,
+				b.print_date,b.isbn,b.word_num,b.price,b.ddprice,
+				b.create_time,b.editor_recommend,b.content_abstract,
 				b.sale,b.stock,b.category_id
 		from dd_category s left join dd_book b 
 		on s.id = b.category_id

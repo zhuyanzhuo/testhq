@@ -21,7 +21,6 @@
 					作者：${book.author } 著
 					<br />
 					出版社：${book.press }&nbsp;&nbsp;&nbsp;&nbsp;
-					出版时间：<fmt:formatDate value="${book.pressTime }" pattern="yyyy-MM-dd"/>
 				</h4>
 				<h5>
 					简介：${book.contentAbstract }

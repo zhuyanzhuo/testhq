@@ -41,8 +41,8 @@ td {
 					<td>名称：</td>
 					<td><input type="text"  name="book.name" class="el-input__inner"></td>
 					<td rowspan="14" style="width: 300px">
-					<td>页数：</td>
-					<td><input type="number" name="book.pageNum" class="el-input__inner"></td>
+					<td>版次：</td>
+					<td><input type="text" name="book.edition" class="el-input__inner"></td>
 				</tr>
 				<tr>
 					<td>所属分类：</td>
@@ -92,48 +92,14 @@ td {
 					<td></td>
 				</tr>
 				<tr>
-					<td>出版时间：</td>
-					<td><input type="date" name="book.pressTime" class="el-input__inner"></td>
+					<td>印次：</td>
+					<td><input type="number" name="book.printDate" class="el-input__inner"></td>
 					<td>内容简介：</td>
 					<td rowspan="2"><textarea class="el-textarea__inner" name="book.contentAbstract"></textarea></td>
 				</tr>
 				<tr>
-					<td>版次：</td>
-					<td><input type="text" name="book.edition" class="el-input__inner"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>印刷时间：</td>
-					<td><input type="date" name="book.revisionTime" class="el-input__inner"></td>
-					<td>作者简介：</td>
-					<td rowspan="2"><textarea class="el-textarea__inner" name="book.authorAbstract"></textarea></td>
-				</tr>
-				<tr>
-					<td>印次：</td>
-					<td><input type="number" name="book.printDate" class="el-input__inner"></td>
-					<td></td>
-				</tr>
-				<tr>
 					<td>ISBN：</td>
 					<td><input type="text" name="book.isbn" class="el-input__inner"></td>
-					<td>基本目录：</td>
-					<td rowspan="2"><textarea class="el-textarea__inner" name="book.director"></textarea></td>
-				</tr>
-				<tr>
-					<td>开本：</td>
-					<td><input type="number" name="book.sizze" class="el-input__inner"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>纸张：</td>
-					<td><input type="text" name="book.paper" class="el-input__inner"></td>
-					<td>媒体评论：</td>
-					<td rowspan="2"><textarea class="el-textarea__inner" name="book.mediaCommentary"></textarea></td>
-				</tr>
-				<tr>
-					<td>包装：</td>
-					<td><input type="text" name="book.pack" class="el-input__inner"></td>
-					<td></td>
 				</tr>
 			</table>
 			<input type="submit" class="button btn-p" value="提交" />&emsp; 

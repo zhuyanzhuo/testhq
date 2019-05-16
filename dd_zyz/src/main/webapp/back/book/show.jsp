@@ -47,7 +47,7 @@
 			<td>定价</td>
 			<td>本站价</td>
 			<td>出版社</td>
-			<td>出版时间</td>
+			<td>添加时间</td>
 			<td>封面图</td>
 			<td>销量</td>
 			<td>库存</td>
@@ -61,7 +61,7 @@
 				<td>${book.price }</td>
 				<td>${book.ddprice }</td>
 				<td>${book.press }</td>
-				<td><fmt:formatDate value="${book.pressTime }" pattern="yyyy-MM-dd"/></td>	
+				<td><fmt:formatDate value="${book.createTime }" pattern="yyyy-MM-dd"/></td>
 				<td>
 					<img width="32px" height="20px" src="${pageContext.request.contextPath }${book.cover } " >
 				</td>

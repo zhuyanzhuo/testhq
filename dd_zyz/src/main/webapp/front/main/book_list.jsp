@@ -219,10 +219,8 @@
 										出版社：
 										<a href='#' name='出版社'>${b.press }</a>
 									</h4>
-									<h4>
-										出版时间：<fmt:formatDate value="${b.pressTime }" pattern="yyyy-MM-dd"/>
-									</h4>
 									<h5>
+										简介：
 										${b.contentAbstract }
 									</h5>
 									<div class="clear"></div>
