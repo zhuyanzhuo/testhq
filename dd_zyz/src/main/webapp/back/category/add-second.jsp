@@ -20,7 +20,7 @@
   
   <body style="background-color: #f0f9fd;">
   	
-  	<div style="text-align:center ;font-size:18px">添加商品类别</div><hr/>
+  	<div style="text-align:center ;font-size:18px">添加二级类别</div><hr/>
   	
   	<form action="${pageContext.request.contextPath }/category/addSecound" method="post">
 		所属一级类别:		

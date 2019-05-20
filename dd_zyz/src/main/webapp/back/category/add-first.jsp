@@ -12,7 +12,7 @@
   </head>
   
   <body style="background-color: #f0f9fd;text-align: center">
-  	<div style="text-align: center;font-size: 18px">添加商品类别</div><hr/>
+  	<div style="text-align: center;font-size: 18px">添加一级类别</div><hr/>
   	<form action="${pageContext.request.contextPath }/category/addParent" method="post">
   		类别名:<input class="el-input__inner" type="text" name="category.name" id="fname"/><span id="fnameMsg"></span><br/><br/>
   		<input class="button btn-p" type="submit" value="提交">&emsp;

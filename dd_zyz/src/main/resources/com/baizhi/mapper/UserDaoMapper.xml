@@ -17,24 +17,15 @@
 			<result column="author" property="author"/>
 			<result column="cover" property="cover"/>
 			<result column="press" property="press"/>
-			<result column="press_time" property="pressTime"/>
 			<result column="edition" property="edition"/>
-			<result column="revision_time" property="revisionTime"/>
 			<result column="print_date" property="printDate"/>
 			<result column="isbn" property="isbn"/>
 			<result column="word_num" property="wordNum"/>
-			<result column="page_num" property="pageNum"/>
-			<result column="sizze" property="sizze"/>
-			<result column="paper" property="paper"/>
-			<result column="pack" property="pack"/>
 			<result column="price" property="price"/>
 			<result column="ddprice" property="ddprice"/>
 			<result column="create_time" property="createTime"/>
 			<result column="editor_recommend" property="editorRecommend"/>
 			<result column="content_abstract" property="contentAbstract"/>
-			<result column="author_abstract" property="authorAbstract"/>
-			<result column="director" property="director"/>
-			<result column="media_commentary" property="mediaCommentary"/>
 			<result column="sale" property="sale"/>
 			<result column="stock" property="stock"/>
 			<result column="category_id" property="categoryId"/>
@@ -44,9 +35,9 @@
 	<select id="findAllBookByUser" resultMap="userBook" parameterType="String">
 		select u.id as uuid,u.email,u.password,u.salt,u.nickname,
     u.status,u.key,u.create_time as ucreateTime,
-    b.id as bid,name,author,cover,press,press_time,edition,revision_time,print_date,
-    isbn,word_num,page_num,sizze,paper,pack,price,ddprice,create_time,
-    editor_recommend,content_abstract,author_abstract,director,media_commentary,
+    b.id as bid,name,author,cover,press,edition,print_date,
+    isbn,word_num,price,ddprice,create_time,
+    editor_recommend,content_abstract,
     sale,stock,category_id
     from 
     dd_user u left join dd_user_book db on u.id = db.user_id

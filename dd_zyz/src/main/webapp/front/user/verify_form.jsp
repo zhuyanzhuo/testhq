@@ -33,7 +33,7 @@
 						</span>
 					</div>
 					<h4>
-						第二步：输入验证码${emailCode }
+						第二步：输入验证码<%--${emailCode }--%>
 					</h4>
 					<div class="mess">
 						<span class="write_in">输入您收到邮件中的验证码：</span>
